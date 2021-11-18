@@ -2,9 +2,10 @@
 Trabajo Final 
 
 
-       public Handler(DataContext context){
-                _context = context;
-            }
-            public async Task<Activity> Handle(QueryId request, CancellationToken cancellationToken){
-                return await _context.Activities.FindAsync(request._guid);
-            }
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<Activity>> GetActivity(Guid Id){
+            return Ok();
+            retunr await _mediator.Send(new ListById(Id));
+        }
+    }
+}
